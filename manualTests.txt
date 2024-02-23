@@ -1,0 +1,54 @@
+Bug Report 1: Get All Bots Button Does Not Load Bots
+
+Description: The Get All Bots button on the home page does not retrieve all bots.
+
+To reproduce:
+- Initial server.js by entering nodemon server.js
+- Navigate to localhost:8000 in the browser
+- Click "See All Bots" button
+
+Expected Result:
+- The front end calls the backend get "api/robots" route 
+- A tile/card displays for each bot in the botsData.js file which includes name, image, health, and attack data.
+Actual Result:
+- The front end calls the back end route but an error is triggered in the terminal that botsArr is undefined. 
+- botsArr needs to be updated to bots
+
+Environment:
+Safari
+MacOS Sonoma
+
+Manual Test: Loss Counter Correctly Tracks Losses
+
+Steps:
+-- Initial server.js by entering nodemon server.js
+- Navigate to localhost:8000 in the browser
+- Select Two bots
+- Click duel
+- Repeat until loss condition is met
+- Check the "Loss" counter to see that it increments by 1
+
+Post Condition:
+- Loss counter increments by 1 only when loss condition is met
+
+
+Bug Report 2:  Loss Counter Increments on Win
+
+Description: When the win condition is met, the "Win" and "Loss" counter do not respond correctly. The "Win" counter does not increment, and the "Loss" counter increments.
+
+To reproduce:
+- Initial server.js by entering nodemon server.js
+- Navigate to localhost:8000 in the browser
+- Select two bots and duel
+- Play until win condition is met
+
+Expected Result:
+- When the win condition is met the "Win" counter should increment by 1
+Actual Result:
+- The "Win" counter does not increment and the "Loss" counter increments by 1.
+
+Environment:
+Safari
+MacOS Sonoma
+
+
