@@ -1,6 +1,7 @@
 const express = require("express");
 const bots = require("./src/botsData");
 const shuffle = require("./src/shuffle");
+var Rollbar = require('rollbar')
 
 const playerRecord = {
   wins: 0,
@@ -10,6 +11,18 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static(__dirname + '/public'))
+
+// include and initialize the rollbar library with your access token
+var rollbar = new Rollbar({
+  accessToken: 'df5a501a66984eb2bbf82a157375c6ab',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+// record a generic message and send it to Rollbar
+rollbar.log('Hello world!')
+
+
 // Add up the total health of all the robots
 const calculateTotalHealth = (robots) =>
   robots.reduce((total, { health }) => total + health, 0);
@@ -37,6 +50,7 @@ const calculateHealthAfterAttack = ({ playerDuo, compDuo }) => {
 
 app.get("/api/robots", (req, res) => {
   try {
+    rollbar.info("All bots loaded on page successfully")
     res.status(200).send(bots);
   } catch (error) {
     console.error("ERROR GETTING BOTS", error);
