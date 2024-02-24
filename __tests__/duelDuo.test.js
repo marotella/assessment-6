@@ -15,4 +15,12 @@ describe("Duel Duo tests", () => {
     await driver.get("http://localhost:8000");
     await driver.wait(until.titleIs("Duel Duo"), 1000);
   });
+  test("draw displays card choices", async () => {
+    await driver.get("http://localhost:8000");
+    await driver.wait(until.titleIs("Duel Duo"), 2000);
+    await driver.findElement(By.id("draw")).click();
+    const cards = await driver.findElement(By.id("choices"));
+    await driver.wait(until.elementIsVisible(cards), 2000)
+  });
+
 });
