@@ -22,5 +22,15 @@ describe("Duel Duo tests", () => {
     const cards = await driver.findElement(By.id("choices"));
     await driver.wait(until.elementIsVisible(cards), 2000)
   });
+  test("add to duo button displays the selected cards in player duo", async () =>{
+    await driver.get("http://localhost:8000");
+    await driver.wait(until.titleIs("Duel Duo"), 1000);
+    await driver.findElement(By.id("draw")).click();
+    const cards = await driver.findElement(By.id("choices"));
+    await driver.wait(until.elementIsVisible(cards), 2000);
+    await driver.findElement(By.className("bot-btn")).click();
+    const playerDuo = await driver.findElement(By.id("player-duo"));
+    await driver.wait(until.elementIsVisible(playerDuo), 2000);
 
+  });
 });
